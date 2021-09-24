@@ -13,7 +13,7 @@ export default class SingleLinkedListNode<T> {
     }
   }
 
-  setNext(nextNode: SingleLinkedListNode<T>): this {
+  setNext(nextNode: SingleLinkedListNode<T> | null): this {
     this.next = nextNode;
     return this;
   }

@@ -1,4 +1,3 @@
-import SingleLinkedListNode from '../../src/SingleLinkedListNode';
 import SingleLinkedList, { priority } from '../../src/SingleLinkedList';
 
 class TestSingleLinkedList<T> extends SingleLinkedList<T> {
@@ -106,5 +105,32 @@ describe('SingleLinkedList', () => {
     expect(list.getHead()?.getValue()).toBe(1);
     expect(list.getHead()?.getNext()).not.toBeNull();
     expect(list.getHead()?.getNext()?.getValue()).toBe(100);
+  });
+
+  test('getArray LinkedList', () => {
+    const list = new TestSingleLinkedList(compareFn);
+    expect(list.getArray()).toStrictEqual([]);
+    list.add(1);
+    list.add(2);
+    list.add(3);
+
+    expect(list.getArray()).toStrictEqual([1, 2, 3]);
+  });
+
+  test('delete value LinkedList', () => {
+    const list = new TestSingleLinkedList(compareFn);
+
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    expect(list.length).toBe(3);
+    expect(list.delete(2)).toBeTruthy();
+    expect(list.length).toBe(2);
+    expect(list.delete(4)).toBeFalsy();
+    expect(list.length).toBe(2);
+
+    expect(list.getHead()).not.toBeNull();
+    expect(list.getHead()?.getValue()).toBe(1);
+    expect(list.getHead()?.getNext()?.getValue()).toBe(3);
   });
 });
